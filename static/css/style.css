@@ -1,0 +1,965 @@
+/*=============== GOOGLE FONTS ===============*/
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+
+/*=============== VARIABLES CSS ===============*/
+:root {
+  --header-height: 3.5rem;
+
+  /*========== Colors ==========*/
+  /*Color mode HSL(hue, saturation, lightness)*/
+  --black-color: #bd4419;
+  --black-color-light: #bd4419; 
+  --black-color-lighten: hsl(300, 4%, 5%);
+  --white-color: #fff;
+  --body-color: hsl(225, 100%, 99%);
+
+  /*========== Font and typography ==========*/
+  /*.5rem = 8px | 1rem = 16px ...*/
+  --body-font:  "Inter", sans-serif;
+  --normal-font-size: .938rem;
+
+  /*========== Font weight ==========*/
+  --font-regular: 400;
+  --font-semi-bold: 600;
+
+  /*========== z index ==========*/
+  --z-tooltip: 10;
+  --z-fixed: 100;
+}
+
+/*========== Responsive typography ==========*/
+@media screen and (min-width: 1024px) {
+  :root {
+    --normal-font-size: 1rem;
+  }
+}
+
+/*=============== BASE ===============*/
+
+
+body {
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
+  background-color: #fff;
+}
+
+ul {
+  list-style: none;
+  /* Color highlighting when pressed on mobile devices */
+  /*-webkit-tap-highlight-color: transparent;*/
+}
+
+a {
+  text-decoration: none;
+}
+
+/*=============== REUSABLE CSS CLASSES ===============*/
+.datsection {
+  max-width: 88%;
+  margin-inline: 1.5rem;
+}
+
+/*=============== HEADER ===============*/
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: var(--black-color);
+  box-shadow: 0 2px 16px hsla(220, 32%, 8%, .3);
+  z-index: var(--z-fixed);
+}
+
+.header {
+  transition: top 0.3s ease; /* Add transition for smooth hiding/showing */
+}
+
+/* .hide {
+  display: none;
+} */
+
+.header__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px; /* Adjust padding as needed */
+  background-color: #ca8961;
+}
+
+.address {
+  color: var(--white-color);
+  /* You can apply additional styling to address if needed */
+}
+
+.social-media {
+  display: flex;
+  column-gap: 10px; /* Adjust spacing between social media links */
+}
+
+.social-media__link {
+  color: var(--white-color);
+  font-size: 1.5rem; /* Adjust font size as needed */
+  /* You can apply additional styling to social media links if needed */
+}
+
+/* Navigation styling */
+
+
+.sav {
+  height: var(--header-height);
+}
+
+/* Your existing navigation styling */
+/* ... */
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: var(--black-color);
+  box-shadow: 0 2px 16px hsla(220, 32%, 8%, .3);
+  z-index: var(--z-fixed);
+}
+
+/*=============== NAV ===============*/
+.sav {
+  height: var(--header-height);
+}
+
+.nav__logo, 
+.nav__burger, 
+.nav__close {
+  color: var(--white-color);
+}
+
+.nav__data {
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav__logo {
+  display: inline-flex;
+  align-items: center;
+  column-gap: .25rem;
+  font-weight: var(--font-semi-bold);
+  /* Color highlighting when pressed on mobile devices */
+  /*-webkit-tap-highlight-color: transparent;*/
+}
+
+.nav__logo i {
+  font-weight: initial;
+  font-size: 1.25rem;
+}
+
+.sav__toggle {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  left: 300px;
+}
+
+.nav__burger, 
+.nav__close {
+  position: absolute;
+  width: max-content;
+  height: max-content;
+  inset: 0;
+  margin: auto;
+  font-size: 1.25rem;
+  cursor: pointer;
+  transition: opacity .1s, transform .4s;
+}
+
+.nav__close {
+  opacity: 0;
+}
+
+/* Navigation for mobile devices */
+@media screen and (max-width: 1118px) {
+  .nav__menu {
+    position: absolute;
+    left: 0;
+    top: 2.5rem;
+    width: 100%;
+    height: calc(100vh - 3.5rem);
+    overflow: auto;
+    pointer-events: none;
+    opacity: 0;
+    transition: top .4s, opacity .3s;
+  }
+  .nav__menu::-webkit-scrollbar {
+    width: 0;
+  }
+  .nav__list {
+    background-color: var(--black-color);
+    padding-top: 1rem;
+  }
+}
+
+.nav__link {
+  color: var(--white-color);
+  background-color: var(--black-color);
+  font-weight: var(--font-semi-bold);
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color .3s;
+}
+.nav__links{
+  color: var(--white-color);
+}
+
+
+
+/* Show menu */
+.show-menu {
+  opacity: 1;
+  top: 3.5rem;
+  pointer-events: initial;
+}
+
+/* Show icon */
+.show-icon .nav__burger {
+  opacity: 0;
+  transform: rotate(90deg);
+}
+.show-icon .nav__close {
+  opacity: 1;
+  transform: rotate(90deg);
+}
+
+/*=============== DROPDOWN ===============*/
+.dropdown__item {
+  cursor: pointer;
+}
+
+.dropdown__arrow {
+  font-size: 1.25rem;
+  font-weight: initial;
+  transition: transform .4s;
+}
+
+.dropdown__link, 
+.dropdown__sublink {
+  padding: 1.25rem 1.25rem 1.25rem 2.5rem;
+  color: var(--white-color);
+  background-color: var(--black-color-light);
+  display: flex;
+  align-items: center;
+  column-gap: .5rem;
+  font-weight: var(--font-semi-bold);
+  transition: background-color .3s;
+}
+
+.dropdown__link i, 
+.dropdown__sublink i {
+  font-size: 1.25rem;
+  font-weight: initial;
+}
+
+.dropdown__link:hover, 
+.dropdown__sublink:hover {
+  background-color: #ca8961;
+}
+
+.dropdown__menu, 
+.dropdown__submenu {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .4s ease-out;
+  width: 450px; /* Set your desired width here */
+  
+}
+
+/* Show dropdown menu & submenu */
+.dropdown__item:hover .dropdown__menu, 
+.dropdown__subitem:hover > .dropdown__submenu {
+  max-height: 1000px;
+  transition: max-height .4s ease-in;
+}
+
+/* Rotate dropdown icon */
+.dropdown__item:hover .dropdown__arrow {
+  transform: rotate(180deg);
+}
+
+/*=============== DROPDOWN SUBMENU ===============*/
+.dropdown__add {
+  margin-left: auto;
+}
+
+.dropdown__sublink {
+  background-color: var(--black-color-lighten);
+}
+
+/*=============== BREAKPOINTS ===============*/
+/* For small devices */
+@media screen and (max-width: 340px) {
+  .datsection {
+    margin-inline: 1rem;
+  }
+
+  .nav__link {
+    padding-inline: 1rem;
+  }
+}
+
+/* For large devices */
+@media screen and (min-width: 1118px) {
+  .datsection {
+    margin-inline: auto;
+  }
+
+  .sav {
+    height: calc(var(--header-height) + 2rem);
+    display: flex;
+    justify-content: space-between;
+  }
+  .sav__toggle {
+    display: none;
+  }
+  .nav__list {
+    height: 100%;
+    display: flex;
+    column-gap: 3rem;
+  }
+  .nav__link {
+    height: 100%;
+    padding: 0;
+    justify-content: initial;
+    column-gap: .25rem;
+  }
+  .nav__link:hover {
+    background-color: transparent;
+  }
+
+  .dropdown__item, 
+  .dropdown__subitem {
+    position: relative;
+  }
+
+  .dropdown__menu, 
+  .dropdown__submenu {
+    max-height: initial;
+    overflow: initial;
+    position: absolute;
+    left: 0;
+    top: 6rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .3s, top .3s;
+  }
+
+  .dropdown__link, 
+  .dropdown__sublink {
+    padding-inline: 1rem 3.5rem;
+  }
+
+  .dropdown__subitem .dropdown__link {
+    padding-inline: 1rem;
+  }
+
+  .dropdown__submenu {
+    position: absolute;
+    left: 100%;
+    top: .5rem;
+  }
+
+  /* Show dropdown menu */
+  .dropdown__item:hover .dropdown__menu {
+    opacity: 1;
+    top: 5.5rem;
+    pointer-events: initial;
+    transition: top .3s;
+  }
+
+  /* Show dropdown submenu */
+  .dropdown__subitem:hover > .dropdown__submenu {
+    opacity: 1;
+    top: 0;
+    pointer-events: initial;
+    transition: top .3s;
+  }
+}
+
+
+.content {
+  padding-top: 4.0rem; /* Adjust this value according to your navbar height */
+}
+@media screen and (max-width: 1118px) {
+  .content {
+    padding-top: 0; /* Remove padding for smaller screens */
+  }
+}
+
+.mySwiper {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .slide-sections {
+    background-position: center;
+    background-size: cover;
+  }
+  
+  
+  .slide-sections img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .slide-sections {
+    height: 500px; 
+  }
+  
+
+  .slide-section {
+    background-position: center;
+    background-size: cover;
+  }
+  
+  
+  .slide-section img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    
+    transition: transform 0.3s ease-in-out;
+  }
+  /* .slide-section {
+    height: 500px; 
+  } */
+  
+  
+  .swiper-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 20px; /* Adjust the distance from the bottom */
+    width: 100%;
+  }
+
+  @media screen and (max-width: 999px){
+    .swiper-container{
+        margin-top: -30px;
+    }
+  }
+.main-heading {
+    padding-bottom: 0px;
+}
+.sof-text-block{
+    display: inline-block;
+    clear: both;
+    width: 100%;
+}
+.sof-elm{
+    float: left;
+    width: 100%;
+    box-sizing: border-box;
+}
+.arrow-link {
+    position: relative;
+    color: #bd4419; /* Set link color */
+    text-decoration: none;
+    transition: color 0.3s ease; /* Apply transition effect for color change */
+  }
+  
+  .arrow {
+    position: absolute;
+    right: -30px;
+    bottom: -12px;
+    transition: transform 0.3s ease; /* Apply transition effect for arrow movement */
+    font-size: 28px;
+  }
+  
+  .arrow-link:hover {
+    color: #ca8961; /* Change link color on hover */
+  }
+  
+  .arrow-link:hover .arrow {
+    transform: translateX(5px); /* Move arrow to the right on hover */
+  }
+  .gp{
+    padding-right: 30px;
+  }
+  .mama-block{
+    padding: 3rem 2rem 2rem;
+  }
+  .btn-mod.btn-border {
+    color: #000000;
+    border: 2px solid #000000;
+    background: transparent;
+}
+.btn-mod.btn-circle {
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    border-radius: 30px;
+}
+.btn-mod.btn-border:hover, .btn-mod.btn-border:focus{
+    color: #fff;
+    border-color: transparent;
+    background: #bd4419;
+}
+
+
+.item-content {
+    display: flex; 
+    align-items: center;
+}
+
+.text {
+    flex-grow: 1; 
+    min-width: 0;
+}
+
+.why{
+    padding-right: 20px;
+}
+.para{
+    font-size: 0.875rem;
+    line-height: 1.5rem;
+    margin-bottom: 2rem;
+}
+.animated {
+    opacity: 0;
+    transform: translateY(50px); /* Initial position below the viewport */
+    transition: opacity 0.5s, transform 0.5s; /* Transition properties */
+  }
+  
+  .animated.active {
+    opacity: 1;
+    transform: translateY(0); /* Move element to its final position */
+  }
+  .service-section{
+    padding: 3rem 0px 2rem;
+  }
+.contact-area{
+  padding: 3rem 0px 2rem;
+}
+
+  .arrow-links {
+    position: relative;
+    color: #fff; /* Set link color */
+    text-decoration: none;
+    transition: color 0.3s ease; /* Apply transition effect for color change */
+  }
+  
+  .arrows {
+    position: absolute;
+    right: -30px;
+    bottom: -12px;
+    transition: transform 0.3s ease; /* Apply transition effect for arrow movement */
+    font-size: 28px;
+  }
+  
+  .arrow-links:hover {
+    color: #f5b48b; /* Change link color on hover */
+  }
+  
+  .arrow-links:hover .arrows {
+    transform: translateX(5px); /* Move arrow to the right on hover */
+  }
+  .about-section{
+    padding: 3rem 0px 2rem;
+  }
+   
+.heading h1 {
+  position: relative;
+  text-align: center; /* Ensure text is centered */
+}
+
+.heading h1::after {
+  content: "";
+  position: absolute;
+  bottom: -8px; 
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px; /* Adjust the width of the underline */
+  height: 2px; /* Adjust the height/thickness of the underline */
+  background-color: #bd4419; /* Set the color of the underline */
+}
+
+  
+/* h2{
+  text-align:center;
+  padding: 20px;
+  
+} */
+/* Slider */
+
+.slick-slide {
+  margin: 0px 20px;
+}
+
+.slick-slide img {
+  width: 100%;
+  height: 100%; /* Ensures images maintain aspect ratio */
+  max-width: 150%; /* Ensures images don't exceed container width */
+}
+
+.slick-slider {
+  position: relative;
+  display: block;
+  box-sizing: border-box;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+  -khtml-user-select: none;
+  -ms-touch-action: pan-y;
+  touch-action: pan-y;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.slick-list {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+.slick-list:focus {
+  outline: none;
+}
+
+.slick-list.dragging {
+  cursor: pointer;
+  cursor: hand;
+}
+
+.slick-slider .slick-track,
+.slick-slider .slick-list {
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  -o-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+
+.slick-track {
+  position: relative;
+  top: 0;
+  left: 0;
+  display: block;
+}
+
+.slick-track:before,
+.slick-track:after {
+  display: table;
+  content: '';
+}
+
+.slick-track:after {
+  clear: both;
+}
+
+.slick-loading .slick-track {
+  visibility: hidden;
+}
+
+.slick-slide {
+  display: none;
+  float: left;
+  height: 100%;
+  min-height: 1px;
+}
+
+[dir='rtl'] .slick-slide {
+  float: right;
+}
+
+.slick-slide img {
+  display: block;
+}
+
+.slick-slide.slick-loading img {
+  display: none;
+}
+
+.slick-slide.dragging img {
+  pointer-events: none;
+}
+
+.slick-initialized .slick-slide {
+  display: block;
+}
+
+.slick-loading .slick-slide {
+  visibility: hidden;
+}
+
+.slick-vertical .slick-slide {
+  display: block;
+  height: auto;
+  border: 1px solid transparent;
+}
+
+.slick-arrow.slick-hidden {
+  display: none;
+}
+
+
+@media (max-width: 768px) {
+  .slick-slide img {
+      width: 150%; /* Adjust width as needed */
+  }
+}
+
+
+.section {
+  max-width: 100%;
+  margin: 0 auto;
+}
+.testimonial-slider {
+  margin-top: 50px; /* Adjust margin as needed */
+  /* width: 100%; Ensure full width */
+  overflow: hidden; /* Prevent scrollbars */
+}
+
+.testimonial-heading {
+  margin-bottom: 30px; /* Add margin bottom to the heading */
+}
+
+.testimonial-slider {
+  text-align: center; /* Center align the slider */
+}
+
+.testimonial-card {
+  background-color: #dfc5ae;
+  /* border: 1px solid #ced4da; */
+  border-radius: 10px; 
+  padding: 50px;
+  position: relative;
+  margin: 0 auto; /* Center align the card */
+  max-width: 500px; /* Set maximum width for the card */
+}
+
+.testimonial-highlight {
+  
+  color: #bd4419;
+  font-weight: 400;
+}
+
+.testimonial-client {
+  margin-top: 10px;
+}
+
+.inverted-comma {
+  position: absolute;
+  top: 20px; /* Adjust top position to properly align */
+  right: 10px; /* Adjust right position to properly align */
+  font-size: 24px;
+  color: #ca8961;
+}
+
+@media (min-width: 768px) {
+  .testimonial-card {
+    border: none;
+    border-radius: 10px; /* Apply border-radius to all corners */
+  }
+ 
+}
+@media (max-width: 767px) {
+  .testimonial-highlight p {
+    font-size: 14px; /* Decrease font size for paragraphs in responsive section */
+  }
+}
+
+/* .custom-pagination {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.pagination-button {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: #f5b48b;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.pagination-button.active {
+  background-color: #bd4419;
+} */
+.custom-pagination{
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.pagination-button {
+  width: 10px;
+  height: 10px;
+  background-color: #f5b48b;
+  border-radius: 50%;
+  margin: 0 5px;
+  cursor: pointer;
+  border: none;
+}
+
+.pagination-button.active {
+  background-color: #bd4419;
+}
+
+
+.section-class {
+  max-width: 100rem;
+  background: linear-gradient(to right, #bd4419 30%,  #ca8961);
+  color: white;
+  line-height: 1.5;
+  
+}
+.section-classes{
+  max-width: 100rem;
+  background: linear-gradient(to right, #ca8961 30%,  #fff);
+  color: white;
+  line-height: 1.5;
+}
+
+@media (min-width: 600px) {
+  .section-class {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .section-classes{
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+  }
+  .about-us {
+    padding: 3vw 0 3vh 3vw;
+  }
+  
+  .image-wrapper {
+    filter: hue-rotate(20deg);
+    clip-path: polygon(0 100%, 50% 0, 100% 0, 100% 100%);
+  }
+}
+
+.about-us {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2rem;
+  
+  h2 {
+    font-weight: 600;
+    white-space: nowrap;
+    font-size: clamp(2rem, 5vw, 4rem);
+    margin-block-end: .5rem;
+  }
+  
+  p {
+    font-size: clamp(1rem, 1.5vw, 3rem);
+  }
+}
+
+.image-wrapper {
+  height: 100%;
+  width: 100%;
+  clip-path: polygon(0, 0, 0, 0);
+
+  .img-class {
+    display: block;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: right center;
+  }
+}
+
+.heading-container {
+  display: flex;
+  align-items: center;
+}
+
+.heading-text {
+  margin-right: 10px;
+}
+
+.get {
+  font-size: 44px; 
+  color: #bd4419;
+}
+.form-control:focus {
+  border-color: #bd4419; /* Set the desired border color when focused */
+  box-shadow: none; /* Remove the box shadow */
+}
+.bg-footer {
+  background-color: #36454F;
+  padding: 60px 0 30px;
+}
+.footer-heading {
+  letter-spacing: 2px;
+}
+
+.footer-link a {
+  color: #acacac;
+  line-height: 40px;
+  font-size: 14px;
+  transition: all 0.5s;
+}
+
+.footer-link a:hover {
+  color: #bd4419;
+}
+
+.contact-info {
+  color: #acacac;
+  font-size: 14px;
+}
+
+
+.footer-social a {
+  color: #FFF;
+background-color: rgba(255, 255, 255, 0.2);
+display: inline-block;
+height: 40px;
+width: 40px;
+border-radius: 50%;
+text-align: center;
+margin: 0 10px 10px 0;
+line-height: 40px;
+transition: all 0.5s ease;
+}
+.footer-social a:hover {
+color: #fff;
+background-color: #bd4419;
+}
+
+.footer-alt {
+  color: #acacac;
+}
+
+.footer-heading {
+  position: relative;
+  padding-bottom: 12px;
+}
+
+.footer-heading:after {
+  content: '';
+  width: 25px;
+  border-bottom: 1px solid #FFF;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  display: block;
+  border-bottom: 1px solid #bd4419;
+}
+

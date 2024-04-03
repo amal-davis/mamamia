@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    {% load static %}
+
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="{% static 'images/log_final.png' %}" type="image/x-icon">
+
+    <title>Services</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css">
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <link rel="stylesheet" id="industris-style-css" href="{% static 'css/style.css' %}" type="text/css" media="all">
+    <link rel="shortcut icon" href="favicon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
+
+
+
+
+</head>
+<style>
+    .nav__link {
+        position: relative;
+        /* Ensure the relative positioning for the ::after pseudo-element */
+    }
+
+    .nav__link::after {
+        content: '';
+        position: absolute;
+        bottom: 30px;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        /* Adjust the height of the underline as needed */
+        background-color: transparent;
+        /* Initial color of the underline */
+        transition: background-color 0.3s ease;
+        /* Add a smooth transition effect for the color change */
+    }
+
+    .nav__link:hover::after {
+        background-color: #ca8961;
+        /* Change the background color of the underline on hover */
+    }
+
+    @media screen and (max-width: 768px) {
+        .nav__link::after {
+            width: 50%;
+            bottom: -2px;
+            /* Adjust the position for responsiveness */
+        }
+    }
+
+    @media screen and (max-width: 999px) {
+        .nav__link::after {
+            width: 50%;
+            /* Reduce the width of the underline for screens smaller than 768px */
+            bottom: -2px;
+            /* Adjust the position for responsiveness */
+        }
+    }
+
+    .page-header {
+        position: relative;
+        padding: 0;
+        border: none;
+        margin: 0;
+        background-color: #03132b;
+    }
+
+    .page-header-default .overlay {
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+    .breadc-box .row {
+        display: -webkit-box !important;
+        display: -ms-flexbox !important;
+        display: flex !important;
+        -webkit-box-align: center !important;
+        -ms-flex-align: center !important;
+        align-items: center !important;
+        min-height: 450px;
+    }
+
+    .page-title {
+        color: #fff;
+        line-height: 1;
+    }
+
+    .breadcrumbs {
+        margin: 0;
+    }
+
+    .breadcrumbs li {
+        display: inline-block;
+        font-size: 16px;
+        color: #ca8961;
+    }
+
+    .breadc-box li:before {
+        content: "/";
+        font-family: FontAwesome;
+        color: #fff;
+        margin: 0 8px;
+    }
+
+    .breadc-box li:first-child:before {
+        display: none;
+    }
+
+    .breadcrumbs li a {
+        font-size: 16px;
+        color: #b7b7b7;
+    }
+
+    .breadcrumbs li a:hover {
+        color: #ca8961;
+        text-decoration: none;
+    }
+
+    #about-us-container,
+    #our-vision-container,
+    #mission-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        margin-bottom: 40px;
+    }
+
+    #our-vision-container .col-md-6,
+    #mission-container .col-md-6 {
+        margin-bottom: 20px;
+    }
+
+    @media (min-width: 768px) {
+
+        #about-us-container,
+        #our-vision-container,
+        #mission-container {
+            flex-direction: row;
+        }
+
+        #our-vision-container .col-md-6,
+        #mission-container .col-md-6 {
+            order: 2;
+            margin-bottom: 0;
+        }
+
+        #our-vision-container .col-md-6 img,
+        #mission-container .col-md-6 img {
+            margin-top: 0;
+            margin-left: 20px;
+        }
+    }
+
+    .product .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .containers {
+        position: relative;
+        max-width: 100%;
+        /* Ensure image doesn't exceed its container */
+        padding: 0;
+        /* Remove padding to prevent horizontal scroll */
+    }
+
+    /* Style for the text overlay */
+    .text-overlay {
+        position: absolute;
+        top: 50%;
+        /* Position text at the vertical center */
+        left: 50%;
+        /* Position text at the horizontal center */
+        transform: translate(-50%, -50%);
+        /* Move text back by half its own size to center it */
+        text-align: center;
+        /* Center-align text */
+        color: white;
+        /* Text color */
+        padding: 20px;
+        /* Add padding for spacing */
+    }
+
+    /* Style for the image */
+    .img-fluid {
+        max-width: 100%;
+        /* Make the image responsive */
+        max-height: 100%;
+        /* Set maximum height to 80% of viewport height */
+        width: auto;
+        /* Ensure aspect ratio is maintained */
+        height: auto;
+        /* Ensure aspect ratio is maintained */
+    }
+
+    /* Style for the banner title */
+    .banner-title {
+        color: #bd4419;
+        font-size: 32px;
+        margin-bottom: 20px;
+    }
+
+    /* Style for the banner caption */
+    .banner-caption {
+        color: #03132b;
+        margin-bottom: 20px;
+    }
+
+    /* Style for the button group */
+    .banner-btn-group {
+        display: flex;
+        justify-content: center;
+    }
+
+    /* Style for the button */
+    .slds-button_brand {
+        border-radius: 50px;
+    }
+
+    /* Additional responsive styles */
+
+    @media (max-width: 576px) {
+        .banner-title {
+            font-size: 24px;
+        }
+
+        .para {
+            font-size: 10px;
+        }
+    }
+</style>
+
+<body>
+    <!--=============== HEADER ===============-->
+    <header class="header">
+        <nav class="sav datsection">
+            <div class="nav__data">
+                <a href="#" class="nav__logo">
+                    <img src="{% static 'images/logo.png' %}" alt="" class="img-fluid" style="width: 150px;">
+                </a>
+
+                <div class="sav__toggle" id="nav-toggle">
+                    <i class="ri-menu-line nav__burger"></i>
+                    <i class="ri-close-line nav__close"></i>
+                </div>
+            </div>
+
+            <!--=============== NAV MENU ===============-->
+            <div class="nav__menu" id="nav-menu">
+                <ul class="nav__list">
+                    <li><a href="/" class="nav__link">Home</a></li>
+
+                    <li class="dropdown__item">
+
+                        <a href="{% url 'about_us' %}" class="nav__link">
+                            About Us <i class="ri-arrow-down-s-line dropdown__arrow"></i>
+                        </a>
+
+
+                        <ul class="dropdown__menu">
+                            <li>
+                                <a href="{% url 'about_us' %}" class="dropdown__link">
+                                    <i class="ri-community-line"></i>About Us
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{% url 'why_mamamia' %}" class="dropdown__link">
+                                    <i class="ri-question-answer-fill"></i> Why Mamamia
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="{% url 'our_team' %}" class="dropdown__link">
+                                    <i class="ri-team-line"></i> Our Team
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{% url 'our_associates' %}" class="dropdown__link">
+
+                                    <i class="ri-shake-hands-line"></i> Our Associates
+
+                                </a>
+                            </li>
+
+                        </ul>
+                    </li>
+                    <!--=============== DROPDOWN 2 ===============-->
+                    <li class="dropdown__item">
+                        <a href="{% url 'services' %}" class="nav__link">
+                            Services <i class="ri-arrow-down-s-line dropdown__arrow"></i>
+                        </a>
+
+                        <ul class="dropdown__menu">
+                            <li>
+                                <a href="{% url 'services' %}" class="dropdown__link">
+                                    <i class="ri-service-line"></i> Services
+                                </a>
+                                <a href="{% url 'egg_donor' %}" class="dropdown__link">
+                                    <i class="ri-service-line"></i> Egg Donor Program
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="{% url 'sperm_donor' %}" class="dropdown__link">
+                                    <i class="ri-service-line"></i> Sperm Donor Program
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="{% url 'surrogacy_program' %}" class="dropdown__link">
+                                    <i class="ri-service-line"></i>Surrogacy Program
+                                </a>
+                            </li>
+                            <!-- <li>
+                                <a href="#" class="dropdown__link">
+                                    <i class="ri-service-line"></i>Premium Delivery Care
+                                </a>
+                            </li> -->
+                        </ul>
+                    </li>
+
+                    <li><a href="{% url 'blog' %}" class="nav__link">Blog</a></li>
+
+                    <!--=============== DROPDOWN 1 ===============-->
+
+
+                    <li><a href="{% url 'gallery' %}" class="nav__link">Gallery</a></li>
+
+
+
+                    <li><a href="{% url 'contact_us' %}" class="nav__link">Contact Us</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <section class="image-fluid" style="margin-top: 70px;">
+
+        <div class="page-header"
+            style="background: url('static/images/mm-15.png') no-repeat center center;">
+            <div class="container">
+                <div class="breadc-box no-line">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2 class="page-title" style="color:#fff;">Services</h2>
+                            <ul id="breadcrumbs" class="breadcrumbs none-style">
+                                <li><a href="">Home</a></li>
+                                <li class="active">Services</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <br><br>
+    <section class="about">
+        <!-- About Us Section -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 pt-5 why">
+                    <img src="{% static 'images/mm-11.png' %}" class="img-fluid" alt="" style="border-radius: 20px;">
+                </div>
+                <div class="col-md-6  pt-5 why">
+                    <div class="content">
+                        <h3 style="color: #bd4419; margin-bottom: 20px; text-align: center; ">Egg Donor Program</h3>
+                        <p class="fz-22 fw3 mb-xl-5 mb-3" style="text-align: justify;">Our ART bank proudly offers an
+                            exceptional egg donor program, providing individuals and couples with a compassionate and
+                            supportive pathway to parenthood. Our comprehensive egg donor program is designed to meet
+                            the diverse needs of our clients, offering a wide selection of rigorously screened and
+                            highly qualified egg donors. With a focus on ethical practices and the highest standards of
+                            care, our program ensures the safety, confidentiality, and well-being of both donors and
+                            intended parents throughout the entire process. Our dedicated team of fertility specialists,
+                            counselors, and support staff work closely with each individual or couple to guide them
+                            through every step of the journey, from selecting the ideal donor to facilitating the egg
+                            retrieval process. By offering personalized care, cutting-edge technology, and unwavering
+                            support, we are committed to helping our clients achieve their dreams of building a family
+                            through our esteemed egg donor program</p>
+                        <a href="#" class="btn btn-mod btn-border btn-circle btn-large mb-4">Learn More</a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 pt-5 why">
+                    <div class="content">
+
+                        <h3 style="color: #bd4419; margin-bottom: 20px; text-align: center; ">Sperm Donor Program</h3>
+                        <p class="fz-22 fw3 mb-xl-5 mb-3" style="text-align: justify;">Embarking on the journey to
+                            parenthood is a deeply personal and meaningful experience, and our ART bank is honored to
+                            offer a distinguished sperm donor program to support individuals and couples in their quest
+                            to conceive. Our sperm donor program embodies our commitment to excellence, integrity, and
+                            inclusivity, providing access to a diverse range of thoroughly screened and exceptional
+                            sperm donors. With a steadfast dedication to ethical practices and the highest standards of
+                            care, our program ensures the safety, confidentiality, and well-being of all involved
+                            parties throughout the process. Our team of experienced fertility specialists and
+                            compassionate staff members are here to provide personalized guidance and support at every
+                            stage, from donor selection to fertility treatment. With cutting-edge technology and
+                            unwavering commitment, we strive to empower individuals and couples to realize their dream
+                            of parenthood through our esteemed sperm donor program.</p>
+                        <a href="#" class="btn btn-mod btn-border btn-circle btn-large mb-4">Learn More</a>
+
+                    </div>
+
+                </div>
+                <div class="col-md-6 pt-5 why">
+                    <img src="{% static 'images/mm-12.png' %}" class="img-fluid" alt="" style="border-radius: 20px;">
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 pt-5 why">
+                    <img src="{% static 'images/mm-13.png' %}" class="img-fluid" alt="" style="border-radius: 20px;">
+                </div>
+                <div class="col-md-6 pt-5 why">
+                    <div class="content">
+
+                        <h3 style="color: #bd4419; margin-bottom: 20px; text-align: center; ">Surrogacy
+                            Program</h3>
+                        <p class="fz-22 fw3 mb-xl-5 mb-3" style="text-align: justify;">At our ART bank, we are honored
+                            to offer a comprehensive surrogacy program, dedicated to assisting individuals and couples
+                            in their journey to parenthood. Our surrogacy program stands as a beacon of hope and
+                            compassion, providing a nurturing environment where dreams of starting or expanding a family
+                            can become a reality. With a steadfast commitment to ethical practices and the highest
+                            standards of care, our program offers guidance and support every step of the way. From
+                            matching intended parents with experienced and compassionate surrogates to providing
+                            comprehensive medical and emotional support throughout the pregnancy journey, our team of
+                            dedicated professionals ensures a seamless and rewarding experience. With empathy, respect,
+                            and unwavering dedication, we are proud to offer our surrogacy program as a lifeline for
+                            those seeking to fulfill their dreams of parenthood.</p>
+                        <a href="#" class="btn btn-mod btn-border btn-circle btn-large mb-4">Learn More</a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 pt-5 why">
+                    <div class="content">
+
+                        <h3 style="color: #bd4419; margin-bottom: 20px; text-align: center; ">Premium
+                            Delivery Care</h3>
+                        <p class="fz-22 fw3 mb-xl-5 mb-3" style="text-align: justify;">At our ART bank, we are pleased to provide a premium delivery care service, tailored to meet
+                            the unique needs and preferences of expecting parents. Our delivery care service exemplifies
+                            our commitment to excellence and personalized care, offering a comprehensive range of
+                            amenities and support to ensure a comfortable and memorable birthing experience. From
+                            luxurious private suites equipped with state-of-the-art facilities to personalized birth
+                            plans crafted in collaboration with experienced obstetricians and midwives, we strive to
+                            create an environment where every expectant parent feels empowered, supported, and
+                            cherished. With an unwavering focus on safety, comfort, and personalized attention, our
+                            premium delivery care service is designed to exceed expectations and leave a lasting
+                            impression of joy and satisfaction for growing families.</p>
+                        <a href="#" class="btn btn-mod btn-border btn-circle btn-large mb-4">Learn More</a>
+
+                    </div>
+                    
+                </div>
+                <div class="col-md-6 pt-5 why">
+                    <img src="{% static 'images/mm-14.png' %}" class="img-fluid" alt="" style="border-radius: 20px;">
+                </div>
+            </div>
+        </div>
+Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum corrupti officiis hic aspernatur quo distinctio libero voluptas laboriosam, fugit assumenda rem nobis adipisci voluptate dolorem eos optio autem delectus labore?
+
+        <!-- <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <br><img src="static/images/don.png" class="img-fluid" alt="" style="border-radius: 20px;">
+                </div>
+                <div class="col-md-6">
+                    <div class="content">
+                        <br><br>
+                        <h6 style="color: #bd4419; margin-bottom: 20px; text-align: center; font-size: large;">Donors
+                        </h6>
+                        <p>Are you interested in becoming an egg or sperm donor? Or looking to be matched with one? Our
+                            team can help you do this.</p>
+                        <br><a href="#" class="btn btn-mod btn-border btn-circle btn-large mb-4">Learn More</a>
+
+                    </div>
+                </div>
+            </div>
+        </div> -->
+    </section>
+    <br><br>
+    <section class="img">
+        <div class="containers">
+            <!-- Image with Text Overlay -->
+            <img src="{% static 'images/pic.png' %}" class="img-fluid" alt="Image with Text Overlay"
+                style="height: 500px; width: 1700px;">
+            <!-- Text Overlay -->
+            <div class="text-overlay">
+                <div class="banner-caption">
+                    <h2 class="banner-title" style="margin-top: 200px;">Ready to get started?</h2>
+                    <p class="para">Have all your questions answered and get direction on next steps with our Fertility
+                        Concierge team.</p>
+                    <div class="banner-btn-group">
+                        <button type="button" class="btn btn-danger" style="border-radius: 50px;">Get started
+                            today</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="section bg-footer " style="margin-top: 220px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="">
+                        <h6 class="footer-heading text-uppercase text-white">Information</h6>
+                        <ul class="list-unstyled footer-link mt-4">
+                            <li><a href="">Home</a></li>
+                            <li><a href="">About Us</a></li>
+                            <li><a href="">Services</a></li>
+                            <li><a href="">Blog</a></li>
+                            <li><a href="">Gallery</a></li>
+                            <li><a href="">Contact Us</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-lg-3">
+                    <div class="">
+                        <h6 class="footer-heading text-uppercase text-white">About Us</h6>
+                        <ul class="list-unstyled footer-link mt-4">
+                            <li><a href="">Why Mamamia</a></li>
+                            <li><a href="">Our Team</a></li>
+                           
+                            <li><a href="">Our Associate</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-lg-2">
+                    <div class="">
+                        <h6 class="footer-heading text-uppercase text-white">Services</h6>
+                        <ul class="list-unstyled footer-link mt-4">
+                            <li><a href="">Egg Donor Program</a></li>
+                            <li><a href="">Sperm Donor Program</a></li>
+                            <li><a href="">Surrogacy Program</a></li>
+                            <li><a href="">Premium Delvery care</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="">
+                        <h6 class="footer-heading text-uppercase text-white">Contact Us</h6>
+                        <p class="contact-info mt-4">Contact us if need help withanything</p>
+                        <p class="contact-info">+01 123-456-7890</p>
+                        <div class="mt-5">
+                            <div class="footer-social">
+                                <h6 class="footer-heading text-uppercase text-white">Follow Us</h6>
+                                <a href="" class="mt-3" target="_blank"><i class="fab fa-facebook"></i></a>
+                                <a href="" class="mt-3" target="_blank"><i class="fab fa-instagram"></i></a>
+                                <a href="" class="mt-3" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                                <a href="" class="mt-3" target="_blank"><i class="fab fa-youtube"></i></a>
+                                <a href="" class="mt-3" target="_blank"><i class="fab fa-telegram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="text-center mt-5 text-white">
+            &copy; mamamialife.com All Rights Reserved | Designed and Developed by <a href="https://softverses.com/" class="text-white" target="_blank">Softverses</a> 
+        </div>
+    </footer>
+    <!-- Bootstrap JS and jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="{% static 'js/bootstrap.bundle.js' %}"></script>
+    <script src="{% static 'js/bootstrap.js' %}"></script>
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script>
+        const showMenu = (toggleId, navId) => {
+            const toggle = document.getElementById(toggleId),
+                nav = document.getElementById(navId)
+
+            toggle.addEventListener('click', () => {
+                // Add show-menu class to nav menu
+                nav.classList.toggle('show-menu')
+
+                // Add show-icon to show and hide the menu icon
+                toggle.classList.toggle('show-icon')
+            })
+        }
+        showMenu('nav-toggle', 'nav-menu')
+
+
+
+        const handleDropdownHover = () => {
+            const dropdownItems = document.querySelectorAll('.dropdown__item');
+
+            dropdownItems.forEach(item => {
+                item.addEventListener('mouseover', () => {
+                    item.querySelector('.dropdown__menu').classList.add('show-menu');
+                });
+
+                item.addEventListener('mouseleave', () => {
+                    item.querySelector('.dropdown__menu').classList.remove('show-menu');
+                });
+            });
+        };
+
+        const handleDropdownClick = () => {
+            const dropdownLinks = document.querySelectorAll('.nav__link');
+
+            dropdownLinks.forEach(link => {
+                link.addEventListener('click', (event) => {
+                    if (window.innerWidth < 1118) {
+                        event.preventDefault(); // Prevent default link behavior
+                        const dropdownMenu = link.nextElementSibling;
+                        dropdownMenu.classList.toggle('show-menu');
+                    }
+                });
+            });
+        };
+
+        handleDropdownHover(); // For desktop view
+        handleDropdownClick(); // For mobile view
+
+
+
+        const sr = ScrollReveal({
+            distance: '70px',
+            duration: 700,
+            reset: true
+        });
+        sr.reveal('.why', { delay: 200, orgin: 'bottom' });
+    </script>
+
+</body>
+
+</html>

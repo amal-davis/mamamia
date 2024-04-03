@@ -1,0 +1,1248 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{% static 'images/logo.png' %}" type="image/x-icon">
+    <title>Home</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css">
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+        integrity="sha512-nRRvYQUKo6eZuNDJ6ACzhV4fMcRX49zNndVNmNx8lFXh/foUsZP9zzpXqiw6IzqRMPNsqkIEOevD7OdtJ0Gg9g=="
+        crossorigin="anonymous" />
+    <script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.js"></script>
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"> -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+
+</head>
+<style>
+    .nav__link {
+        position: relative;
+        /* Ensure the relative positioning for the ::after pseudo-element */
+    }
+
+    .nav__link::after {
+        content: '';
+        position: absolute;
+        bottom: 30px;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        /* Adjust the height of the underline as needed */
+        background-color: transparent;
+        /* Initial color of the underline */
+        transition: background-color 0.3s ease;
+        /* Add a smooth transition effect for the color change */
+    }
+
+    .nav__link:hover::after {
+        background-color: #ca8961;
+        /* Change the background color of the underline on hover */
+    }
+
+    @media screen and (max-width: 768px) {
+        .nav__link::after {
+            width: 50%;
+            /* Reduce the width of the underline for screens smaller than 768px */
+            bottom: -2px;
+            /* Adjust the position for responsiveness */
+        }
+    }
+
+    @media screen and (max-width: 999px) {
+        .nav__link::after {
+            width: 50%;
+            /* Reduce the width of the underline for screens smaller than 768px */
+            bottom: -2px;
+            /* Adjust the position for responsiveness */
+        }
+    }
+
+    .swiper-pagination-bullet {
+        width: 20px;
+        height: 9px;
+        background-color: #000B41;
+        /* Change the color of the '-' */
+        margin: 0 5px;
+        /* Adjust the spacing between each '-' */
+        cursor: pointer;
+    }
+
+    .swiper-pagination-bullet-active {
+        background-color: #ca8961;
+        /* Change the color of the active '-' */
+    }
+
+    .slide-content {
+    position: relative;
+}
+
+.slide-text {
+    position: absolute;
+    bottom: 20px; /* Place the text vertically at the center of the slide */
+    left: 20px; /* Adjust the distance from the left */
+    transform: translateY(-50%); /* Center the text vertically */
+    
+    text-align: left; /* Align text to the left */
+}
+
+/* Style heading and paragraph */
+.slide-text h1 {
+    margin: 0;
+    font-size: 60px; /* Set the font size */
+    font-weight: 400;
+    color: #bd4419; /* Heading color */
+    text-shadow:
+        -1px -1px 0 #fff,  
+         1px -1px 0 #fff,
+        -1px  1px 0 #fff,
+         1px  1px 0 #fff; /* Heading stroke-like effect */
+}
+
+.slide-text p {
+    font-size: 34px;
+    color: #fff; /* Paragraph color */
+ /* Paragraph stroke-like effect */
+}
+
+/* Responsive font size */
+@media screen and (max-width: 999px) {
+    .slide-text h1
+     {
+        font-size: 16px; /* Adjust font size for smaller screens */
+    }
+    .slide-text p{
+        font-size: 14px;
+    }
+}
+@media screen and (max-width: 500px) {
+    .slide-text h1
+     {
+        font-size: 16px; /* Adjust font size for smaller screens */
+    }
+    .slide-text p{
+        font-size: 14px;
+    }
+}
+@media (max-width: 768px) {
+    .slide-text {
+        bottom: auto; /* Remove the bottom positioning */
+        top: 80%; /* Position the text vertically at the center of the slide */
+        transform: translateY(-50%); /* Center the text vertically */
+    }
+}
+
+    .card {
+        border: none;
+        background-color: #bd4419;
+        color: #fff;
+    }
+    .btn{
+    border-radius: 0;
+}
+.footer-social {
+  margin-top: 20px;
+}
+.count-box {
+    background-color: #ca8961;
+    border: 1px solid #ccc;
+    padding: 40px;
+    text-align: center;
+    border-radius: 10px;
+    position: relative; /* Ensure relative positioning for absolute positioning of the icon */
+}
+
+.counter-count {
+    font-size: 50px;
+    font-weight: bold;
+    color: #fff;
+    text-align: center;
+    display: inline-block;
+}
+
+.count-icon {
+    position: absolute;
+    top: 20%; /* Adjust this value to vertically center the icon */
+    left: 50%; /* Adjust this value to horizontally center the icon */
+    transform: translate(-50%, -50%); /* Center the icon */
+}
+@media screen and (max-width: 768px) { /* Adjust the max-width to target tablet and mobile screens */
+    #top-section {
+        display: none;
+    }
+}
+@media screen and (max-width: 900px) { /* Adjust the max-width to target tablet and mobile screens */
+    #top-section {
+        display: none;
+    }
+}
+
+.contact-form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #f8f9fa; /* Set background color */
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form input[type="tel"],
+.contact-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form input[type="tel"] {
+    display: inline-block;
+    width: 100%; /* Adjust width for two inputs in one row */
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box; /* Include padding and border in the width */
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"] {
+    margin-right: 10px; /* Add some space between inputs */
+}
+
+.contact-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.contact-form button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #bd4419;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.contact-form button:hover {
+    background-color: #ca8961;
+}
+
+/* .contact-item {
+      margin-bottom: 20px;
+    } */
+
+    .icon-containers {
+    
+    
+    
+    border-radius: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+    flex-shrink: 0; /* Prevent shrinking of images */
+}
+
+
+/* Add margin between each section */
+
+
+.icon-container img {
+    max-width: 100%; /* Ensure images maintain aspect ratio */
+    max-height: 100%;
+}
+
+#process {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#process ol {
+    list-style-type: none;
+    padding: 0;
+}
+
+#process li {
+    position: relative;
+    padding-left: 1.5em;
+    margin-bottom: 30px; /* Adjust as needed for spacing between items */
+}
+
+#process li:before {
+    content: "\25c6";
+    /* Unicode character for a diamond */
+    color: #bd4419;
+    /* Change color as needed */
+    font-size: 1.2em;
+    position: absolute;
+    left: 0;
+}
+    .mute-button {
+        position: absolute;
+        top: 5%;
+        right: 5%;
+    }
+
+    @media (max-width: 768px) {
+        .mute-button {
+            top: 2%;
+            right: 2%;
+        }
+    }
+    .img-section {
+    /* Add styles for the background image */
+    background-image: url('static/images/Elements.png');
+    background-size: cover;
+    background-position: center;
+    
+}
+/* Hide background image in responsive views */
+@media (max-width: 992px) {
+    .img-section {
+        background-image: none;
+    }
+}
+.team-member {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .team-member img {
+      max-width: 100%;
+      border-radius: 10px; /* Adjust border radius for square shape */
+    }
+    .loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Customize the spinner color and size */
+.spinner-border {
+    color: #FF5733;
+  width: 4rem;
+  height: 4rem;
+}
+
+
+
+    @media (max-width: 576px) {
+      /* Adjust the height for mobile screens */
+      .nav__logo img {
+       max-height: 50px;
+      }
+    }
+
+</style>
+
+<body >
+    <div class="loading-overlay">
+        <div class="spinner-border text-primary" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
+
+    
+    <!--=============== HEADER ===============-->
+    <header class="header" >
+        <div class="header__top" id="top-section">
+            <div class="address"><i class="ri-phone-line"></i>&nbsp;04844862423, 7594911000&nbsp;|&nbsp;<i class="ri-mail-fill"></i>&nbsp;Info@mamamialife.com</div>
+            <div class="social-media">
+                <a href="https://www.facebook.com/people/Mamamia-ART-BANK/61550964704113/" class="social-media__link" target="_blank"><i class="ri-facebook-fill"></i></a>
+                <a href="https://api.whatsapp.com/send?phone=917594911000" class="social-media__link" target="_blank"><i class="ri-whatsapp-fill"></i></a>
+                <a href="https://www.instagram.com/mamamiaart/?igsh=aWNzcGFvbjgwcWpu" class="social-media__link" target="_blank"><i class="ri-instagram-fill"></i></a>
+            </div>
+        </div>
+        <nav class="nav  sav datsection " id="nav-bar">
+            <div class="nav__data">
+                <a href="#" class="nav__logo">
+                    <img src="{% static 'images/logo.png' %}" alt="" class="img-fluid" style=" height: 90px;">
+                </a>
+
+                <div class="sav__toggle" id="nav-toggle">
+                    <i class="ri-menu-line nav__burger"></i>
+                    <i class="ri-close-line nav__close"></i>
+                </div>
+            </div>
+
+            <!--=============== NAV MENU ===============-->
+            <div class="nav__menu" id="nav-menu">
+                <ul class="nav__list">
+                    <li><a href="/" class="nav__link">Home</a></li>
+
+                    <li class="dropdown__item">
+
+                        <div class="nav__link">
+                           <a class="text-white" href="{% url 'about_us' %}">About Us</a>  <i class="ri-arrow-down-s-line dropdown__arrow"></i>
+                        </div>
+
+
+                        <ul class="dropdown__menu">
+                            
+                            <li>
+                                <a href="{% url 'why_mamamia' %}" class="dropdown__link">
+                                    <i class="ri-question-answer-fill"></i> Why Mamamia
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="{% url 'our_team' %}" class="dropdown__link">
+                                    <i class="ri-team-line"></i> Our Team
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{% url 'our_associates' %}" class="dropdown__link">
+
+                                    <i class="ri-shake-hands-line"></i> Our Associates
+
+                                </a>
+                            </li>
+
+                        </ul>
+                    </li>
+                    <!--=============== DROPDOWN 2 ===============-->
+                    <li class="dropdown__item">
+                        <div class="nav__link">
+                            <a class="text-white" href="{% url 'services' %}">Services</a> <i class="ri-arrow-down-s-line dropdown__arrow"></i>
+                        </div>
+
+                        <ul class="dropdown__menu">
+                            <li>
+                                <!-- <a href="{% url 'services' %}" class="dropdown__link">
+                                    <i class="ri-service-line"></i> Services
+                                </a> -->
+                                <a href="{% url 'egg_donor' %}" class="dropdown__link">
+                                    <i class="ri-service-line"></i> Egg Donor Program
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="{% url 'sperm_donor' %}" class="dropdown__link">
+                                    <i class="ri-service-line"></i> Sperm Donor Program
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="{% url 'surrogacy_program' %}" class="dropdown__link">
+                                    <i class="ri-service-line"></i>Surrogacy Program
+                                </a>
+                            </li>
+                            <!-- <li>
+                                <a href="#" class="dropdown__link">
+                                    <i class="ri-service-line"></i>Premium Delivery Care
+                                </a>
+                            </li> -->
+                        </ul>
+                    </li>
+
+                    <li><a href="{% url 'blog' %}" class="nav__link">Blog</a></li>
+
+                    <!--=============== DROPDOWN 1 ===============-->
+
+
+                    <li><a href="{% url 'gallery' %}" class="nav__link">Gallery</a></li>
+
+
+
+                    <li><a href="{% url 'contact_us' %}" class="nav__link">Contact Us</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+
+    <div class="swiper-container" id="swiper1" style="margin-top: 85px;">
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+                {% for content in swiper_contents %}
+                <div class="swiper-slide slide-sections">
+                    <div class="slide-content">
+                        {% if content.image %}
+                            <img src="{{ content.image.url }}" />
+                        {% else %}
+                            <span>No Image</span>
+                        {% endif %}
+                        <div class="slide-text">
+                            <h1>{{ content.heading }}</h1>
+                            <p>{{ content.paragraph }}</p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </div>
+    
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-4 pt-5">
+                <div class="count-box">
+                    <img src="{% static 'images/Surrogacy_Counting.png' %}" alt="Icon" class="count-icon" style="width: 100px; height: 100px;">
+                    <h2 class="counter-count" style="margin-top: 60px;">300</h2>
+                    <h3 style="color: #fff;font-weight: bold;">Surrogacy program
+                    </h3>
+                </div>
+            </div>
+            <div class="col-md-4 pt-5">
+                <div class="count-box">
+                    <img src="{% static 'images/Sperm_Donation_Counting.png' %}" alt="Icon" class="count-icon" style="width: 100px; height: 100px;">
+                    <h2 class="counter-count" style="margin-top: 60px;">4000+</h2>
+                    <h3 style="color: #fff; font-weight: bold;">Sperm samples</h3>
+                </div>
+            </div>
+            <div class="col-md-4 pt-5">
+                <div class="count-box">
+                    <img src="{% static 'images/OOcyte_Donor_Counting.png' %}" alt="Icon" class="count-icon" style="width: 100px; height: 100px;">
+                    <h2 class="counter-count"  style="margin-top: 60px;">2000</h2>
+                    <h3 style="color: #fff; font-weight: bold;">Oocyte Donors</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+    <div class="container img-section" style="margin-top: 90px;">
+        <div class="row">
+            <!-- Left Section -->
+            <div class="col-md-4 mb-5" style="margin-top: 120px;">
+                <div class="container">
+                    <section id="process">
+                        <div class="container" style="margin: 0px;">
+                         
+                            <ol >
+                                
+                               <li> <h3>Quality Semen Samples</h3></li>
+                               <li> <h3>Educated Egg Donors</h3></li>
+                               <li><h3>Professional Surrogacy Services</h3> </li>
+    
+                              
+    
+                            </ol>
+                           
+                        </div>
+                    </section>
+                </div>
+            </div>
+            
+            <!-- Center Section -->
+            <div class="col-md-4 text-center">
+                <div class="licence-section mb-5 img-section">
+                    <img src="{% static 'images/Licence.png' %}" alt="licence_image" class="img-fluid" style="height: 400px;">
+                    <h3 class="mt-3" style="color: #bd4419;">Certificate Of Registration</h3>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <!-- Embed your video here -->
+                <video id="myVideo" width="100%" height="auto" autoplay muted loop controls style="border-radius: 20px;">
+                    <source src="{% static 'images/mamamia_video.mp4' %}" type="video/mp4">
+                    Your browser does not support the video tag.
+
+                    <button id="muteButton" class="btn btn-mod btn-border btn-circle btn-large mb-4 " onclick="toggleMute()" style="color: #fff; background-color: #bd4419; ">
+                        <i id="speakerIcon" class="fas fa-volume-up"></i>
+                    </button>
+                </video>
+                
+                <h3 style="color: #ca8961;">Sometimes MamaMia is the Only Medicine that Works</h3>
+                <!-- Replace "path/to/your/video.mp4" with the actual path to your video file -->
+
+            </div>
+        </div>
+    </div>
+    
+
+    <div class="mt-5 other-section container" style="padding-bottom: 20px;">
+        <div class="row">
+            <div class="col-md-6 pt-5 gp">
+                <h2 class="main-heading" style="color: #bd4419;">{{ mamamia_content.heading }}</h2>
+                <div class="sof-elm sof-text-block">
+                    <hr>
+                </div>
+                <p class="fz-22 fw3 mb-xl-5 mb-4" style="text-align: justify;">{{ mamamia_content.paragraph1 }}</p>
+    
+                <div class="sof-elm sof-text-block">
+                    <p class="fz-22 fw3 mb-xl-5 mb-4" style="text-align: justify;">{{ mamamia_content.paragraph2 }}</p>
+                </div>
+                <div class="sof-elm sof-text-block">
+                    <a href="{{ mamamia_content.link_url }}" class="arrow-link" target="_blank">{{ mamamia_content.link_text }} <i class="ri-arrow-right-up-line arrow"></i></a>
+                </div>
+            </div>
+            <div class="col-md-6 pt-5 gp">
+                <div class="img-sections">
+                    <img src="{{ mamamia_content.image.url }}" alt="mamamia-image" class="img-fluid" style="border-radius: 20px;">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container-fluid mama-block" style="background-color: #ebe7e2;">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 pt-5 why ">
+                    <h1 class="" style="margin-bottom: 30px; color: #bd4419;">{{ mamamia_section.heading }}</h1>
+                    <div class="sof-elm sof-text-block">
+                        <p class="fz-22 fw3 mb-xl-5 mb-4" style="text-align: justify;">{{ mamamia_section.paragraph }}</p>
+                    </div>
+                    <a href="{{ mamamia_section.button_url }}" class="btn btn-mod btn-border btn-circle btn-large mb-4" target="_blank" >{{ mamamia_section.button_text }}</a>
+                    <div class="img-section">
+                        <img src="{{ mamamia_section.image.url }}" alt="mamamia-image" class="img-fluid" style="border-radius: 20px;">
+                    </div>
+
+                </div>
+                <div class="col-sm-6 pt-5 why">
+                    <div class="content-list" >
+                        {% for item in mamamia_items %}
+                            <div class="list-item">
+                                <div class="item-content">
+                                    <div class="text">
+                                        <h3 style="color: #ca8961;">{{ item.title }}</h3>
+                                        <p style="text-align: justify;" class="mb-4 para">{{ item.content }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid service-section" style="background-color: #bd4419; color: #fff;">
+        <div class="container">
+            <div class="row">
+                {% for service in services %}
+                <div class="col-lg-4 col-md-6 pt-5 single-item">
+                    <div class="card">
+                        <div class="card-image text-center">
+                            {% if service.image %}
+                                <img src="{{ service.image.url }}" class="img-fluid" alt="{{ service.title }}" style="width: 100px; height: 100px;">
+                            {% else %}
+                                <p>No image</p>
+                            {% endif %}
+                        </div>
+                        <div class="card-body">
+                            <div class="card-heading">
+                                <h4 class="text-center">{{ service.title }}</h4>
+    
+                            </div>
+                            <div class="card-text">
+                                <p class="text-center mt-4">{{ service.description }}</p>
+                            </div>
+                        </div>
+    
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class=" text-center ">
+            <a href="{% url 'contact_us' %}" class="arrow-links">Discover More<i class="ri-arrow-right-up-line arrows"></i></a>
+    
+        </div>
+    </div>
+    
+
+
+    <div class="container-fluid about-section" style="background-color: #dfc5ae;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6  pt-5">
+                    {% if sections.image %}
+                        <div class="img-section">
+                            <img src="{{ sections.image.url }}" alt="mamamia-image" class="img-fluid" style="border-radius: 20px;">
+                        </div>
+                    {% else %}
+                        <div class="no-image-section">
+                            <p>No Image</p>
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="col-md-6  pt-5">
+                    <div class="content-section">
+                        <h1 class="" style="margin-bottom: 30px; color: #bd4419;">{{ sections.title }}</h1>
+                        <div class="sof-elm sof-text-block">
+                            <p class="fz-22 fw3 mb-xl-5 mb-4" style="text-align: justify;">{{ sections.description }}</p>
+                            <a href="{% url 'our_team' %}" class="btn btn-mod btn-border btn-circle btn-large mb-4">Discover More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6  pt-5">
+                    <div class="content-section">
+                        <h1 class="" style="margin-bottom: 30px; color: #bd4419;">{{ locations.title }}</h1>
+                        <div class="sof-elm sof-text-block">
+                            <p class="fz-22 fw3 mb-xl-5 mb-4" style="text-align: justify;">{{ locations.description }}</p>
+
+                            <a href="{% url 'contact_us' %}" class="btn btn-mod btn-border btn-circle btn-large mb-4">Discover More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6  pt-5">
+                    {% if locations.image %}
+                    <div class="img-section">
+                        <img src="{{ locations.image.url }}" alt="mamamia-image" class="img-fluid"
+                            style="border-radius: 20px;">
+                    </div>
+                    {% else %}
+                        <div class="no-image-section">
+                            <p>No Image</p>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="container mt-4">
+            <div class="heading">
+                <h1 class="text-center">Our <span style="color: #bd4419;">Associates</span></h1>
+            </div>
+            <div class="container mt-4">
+                <section class="customer-logos slider">
+                    {% for associate in associates %}
+                        <div class="slide">
+                            {% if associate.image %}
+                                <img src="{{ associate.image.url }}"  >
+                            {% else %}
+                                <p>No Image</p>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                </section>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container-fluid mt-5">
+        <section class="mt-5 section-class">
+            <div class="about-us">
+                <h2>{{ hiring_info.title }}</h2>
+                <p>{{ hiring_info.description }}</p>
+            </div>
+            <div class="image-wrapper">
+                {% if hiring_info.image %}
+                    <img class="img-class img-fluid" src="{{ hiring_info.image.url }}" />
+                {% else %}
+                    <p>No image</p>
+                {% endif %}
+            </div>
+        </section>
+    </div>
+    
+
+    <div class="container mt-5" style="width: 80%;">
+        <div class="testimonial-heading">
+            <h1 style="color: #ca8961;" class="text-center">Transforming Futures with Mamamia</h1>
+        </div>
+        <div class="testimonial-paragraph">
+            <p class="text-center mt-4" style="font-size: 14px;">At Mamamia, we pride ourselves on being more than just a platform for art enthusiasts. We are catalysts for transformation, empowering individuals to turn their creative passions into prosperous futures. With ART Bank by your side, you're not just selling artwork – you're shaping destinies. Our innovative approach, coupled with unwavering support, has enabled countless artists to transcend boundaries and achieve their dreams</p>
+        </div>
+        <div class="testimonial-slider">
+            <div class="swiper-container testimonial-swiper">
+                <div class="swiper-wrapper">
+                    {% for testimonial in testimonials %}
+                    <div class="swiper-slide">
+                        <div class="testimonial-card">
+                            <div class="inverted-comma"><i class="fas fa-quote-right"></i></div>
+                            <p class="testimonial-highlight">{{ testimonial.content }}</p>
+                            <p class="testimonial-client">{{ testimonial.author }}</p>
+                          </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="custom-pagination">
+                    <button class="pagination-button active"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container mt-5">
+        <div class="heading">
+            <h1 class="text-center">Our <span style="color: #bd4419;">Team</span></h1>
+        </div>
+        <P class="description mt-5 text-center">Meet our Team of pofesssionals, a team of hardworkers and pasionate.</p>
+        </div>
+    </div>
+
+
+
+    <div class="container  mt-5">
+        <div class="row">
+          <!-- Team Member 1 -->
+          {% for member in team_members %}
+          <div class="col-md-4">
+            <div class="team-member">
+                {% if member.image %}
+                <img src="{{ member.image.url }}" class="img-fluid mx-auto d-block" alt="{{ member.name }}">
+                {% else %}
+                <p>No Image</p>
+                {% endif %}
+              <h4 style="color: #bd4419;" class="mt-3">{{ member.name }}</h4>
+              <p>{{ member.position }}</p>
+            </div>
+          </div>
+          {% endfor %}
+          </div>
+          </div>
+
+
+
+
+    
+      
+
+      <div class="container-fluid contact-area" style="margin-top: 60px; margin-bottom: 30px; background-color: #f5f6f8;" >
+        <div class="container mt-4">
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <h1 style="color: #bd4419;" class="mb-4 ">Get In Touch !</h1>
+                    <div class="contact-form" id="contact-section" >
+                        <form method="post" action="{% url 'contact_page_submit_index' %}#contact-section" id="contact-form" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Name" name="fullname" required>
+                            </div>
+                    
+                            <div class="form-group">
+                                <input type="email" class="form-control" placeholder="Email" name="email" required>
+                            </div>
+                    
+                            <div class="form-group">
+                                <input type="tel" class="form-control" placeholder="Phone" name="phone" required>
+                            </div>
+                    
+                            <div class="form-group">
+                                <textarea class="form-control" placeholder="Message" name="message" rows="5" required></textarea>
+                            </div>
+                    
+                            <button type="submit" class="btn mt-3" style="color: #fff; background-color: #bd4419;">Submit</button>
+                        </form>
+                    
+                        {% for message in messages %}
+                        <h2 id="success-message" class="alert text-success " >{{ message }}</h2>
+                        {% endfor %}
+                    </div>
+                    
+                    
+                </div>
+                <div class="col-md-6">
+                    
+                    <div class=" ">
+                        <div class="row">
+                            <div class="second">
+                                <div class="contact-item d-flex align-items-center mt-4 mr-4">
+                                    <div class="icon-containers">
+                                        <img src="{% static 'images/Phone_Icon.png' %}" style="width: 80px; height: 80px;" alt="Phone Icon" class="img-fluid">
+                                    </div>
+                                    <p class="m-0" >04844862423</p>
+                                </div>
+                                <div class="contact-item d-flex align-items-center mt-4">
+                                    <div class="icon-containers">
+                                        <img src="{% static 'images/Email_Icon.png' %}" style="width: 80px; height: 80px;" alt="Email Icon" class="img-fluid">
+                                    </div>
+                                    <p class="m-0">Info@mamamialife.com</p>
+                                </div>
+                            </div>
+                            <div class="second">
+                                <div class="contact-item d-flex align-items-center mt-4">
+                                    <div class="icon-containers">
+                                        <img src="{% static 'images/Whatsapp_Icon.png' %}" style="width: 80px; height: 80px;" alt="WhatsApp Icon" class="img-fluid">
+                                    </div>
+                                    <p class="m-0">+91 7594911000 </p>
+                                </div>
+                                <div class="contact-item d-flex align-items-center mt-4">
+                                    <div class="icon-containers">
+                                        <img src="{% static 'images/Location_Icon.png' %}" style="width: 80px; height: 80px;" alt="Map Marker Icon" class="img-fluid">
+                                    </div>
+                                    <p class="m-0 " >Near Kadavil Castle, Edappally - Pukkattupady Rd, Toll Junction, Edappally, Ernakulam, Kerala 682024</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                      </div>
+
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-12">
+              <div class="heading mt-4">
+                <h1 class="text-center">Our <span style="color: #bd4419;">Location</span></h1>
+            </div>
+                <div class="map mt-4">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3929.3136000911104!2d76.31508787400708!3d9.990933373192755!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b080dcc595e33bf%3A0xdff460b1ec3bff04!2sPermafrost%20climate%20technologies!5e0!3m2!1sen!2sin!4v1706525548719!5m2!1sen!2sin" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <footer class="section bg-footer mt-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="">
+                        <h6 class="footer-heading text-uppercase text-white">Information</h6>
+                        <ul class="list-unstyled footer-link mt-4">
+                            <li><a href="/">Home</a></li>
+                            <li><a href="{% url 'about_us' %}">About Us</a></li>
+                            <li><a href="{% url 'services' %}">Services</a></li>
+                            <li><a href="{% url 'blog' %}">Blog</a></li>
+                            <li><a href="{% url 'gallery' %}">Gallery</a></li>
+                            <li><a href="{% url 'contact_us' %}">Contact Us</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-lg-3">
+                    <div class="">
+                        <h6 class="footer-heading text-uppercase text-white">About Us</h6>
+                        <ul class="list-unstyled footer-link mt-4">
+                            <li><a href="{% url 'why_mamamia' %}">Why Mamamia</a></li>
+                            <li><a href="{% url 'our_team' %}">Our Team</a></li>
+                           
+                            <li><a href="{% url 'our_associates' %}">Our Associate</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-lg-2">
+                    <div class="">
+                        <h6 class="footer-heading text-uppercase text-white">Services</h6>
+                        <ul class="list-unstyled footer-link mt-4">
+                            <li><a href="{% url 'egg_donor' %}">Egg Donor Program</a></li>
+                            <li><a href="{% url 'sperm_donor' %}">Sperm Donor Program</a></li>
+                            <li><a href="{% url 'surrogacy_program' %}">Surrogacy Program</a></li>
+                           
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="">
+                        <h6 class="footer-heading text-uppercase text-white">Contact Us</h6>
+                        <p class="contact-info mt-4">Contact us if need help withanything</p>
+                        <p class="contact-info">+01 123-456-7890</p>
+                        <div class="mt-5">
+                            <div class="footer-social">
+                                <h6 class="footer-heading text-uppercase text-white">Follow Us</h6>
+                                <a href="https://www.facebook.com/people/Mamamia-ART-BANK/61550964704113/" class="mt-3" target="_blank"><i class="fab fa-facebook"></i></a>
+                                <a href="https://www.instagram.com/mamamiaart/?igsh=aWNzcGFvbjgwcWpu" class="mt-3" target="_blank"><i class="fab fa-instagram"></i></a>
+                                <a href="https://api.whatsapp.com/send?phone=917594911000" class="mt-3" target="_blank"><i class="fab fa-whatsapp"></i></a>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="text-center mt-5 text-white">
+            &copy; mamamialife.com All Rights Reserved | Designed and Developed by <a href="https://softverses.com/" class="text-white" target="_blank">Softverses</a> 
+        </div>
+    </footer>
+
+    <script src="{% static 'js/bootstrap.bundle.js' %}"></script>
+    <script src="{% static 'js/bootstrap.js' %}"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+    
+
+
+
+    <script>
+
+    // Automatically hide success message after 3 seconds
+    setTimeout(function() {
+        var successMessage = document.getElementById("success-message");
+        if (successMessage) {
+            successMessage.style.display = "none";
+        }
+    }, 3000);
+
+
+
+
+
+window.addEventListener('load', function() {
+  // Hide the loading overlay when the window is fully loaded
+  var loadingOverlay = document.querySelector('.loading-overlay');
+  loadingOverlay.style.display = 'none';
+  
+
+});
+
+
+
+
+
+var video = document.getElementById("myVideo");
+    var muteButton = document.getElementById("muteButton");
+    var speakerIcon = document.getElementById("speakerIcon");
+
+    function toggleMute() {
+        if (video.muted) {
+            video.muted = false;
+            speakerIcon.classList.remove("fa-volume-off");
+            speakerIcon.classList.add("fa-volume-up");
+        } else {
+            video.muted = true;
+            speakerIcon.classList.remove("fa-volume-up");
+            speakerIcon.classList.add("fa-volume-off");
+        }
+    }
+
+    // When the video ends, play it again
+    video.onended = function() {
+        video.play();
+    };
+
+
+
+
+
+
+
+
+const showMenu = (toggleId, navId) => {
+    const toggle = document.getElementById(toggleId),
+        nav = document.getElementById(navId)
+
+    toggle.addEventListener('click', () => {
+        // Add show-menu class to nav menu
+        nav.classList.toggle('show-menu')
+
+        // Add show-icon to show and hide the menu icon
+        toggle.classList.toggle('show-icon')
+    })
+}
+showMenu('nav-toggle', 'nav-menu')
+
+const handleDropdownToggle = () => {
+    const dropdownItems = document.querySelectorAll('.dropdown__item');
+
+    dropdownItems.forEach(item => {
+        // Add event listener for both hover and click
+        item.addEventListener('mouseover', () => {
+            if (window.innerWidth >= 1118) { // For desktop
+                item.querySelector('.dropdown__menu').classList.add('show-menu');
+            }
+        });
+
+        item.addEventListener('click', () => {
+            if (window.innerWidth < 1118) { // For mobile and tablet
+                item.querySelector('.dropdown__menu').classList.toggle('show-menu');
+            }
+        });
+
+        // For mobile and tablet, prevent redirection only when clicking the dropdown title while the dropdown menu is open
+if (window.innerWidth < 1118) {
+    const dropdownTitle = item.querySelector('.nav__link');
+    dropdownTitle.addEventListener('click', (e) => {
+        const dropdownMenu = item.querySelector('.dropdown__menu');
+        if (dropdownMenu.classList.contains('show-menu')) {
+            e.preventDefault();
+            dropdownMenu.classList.toggle('show-menu');
+        }
+    });
+}
+
+
+        // Close dropdown on mouse leave for desktop
+        item.addEventListener('mouseleave', () => {
+            if (window.innerWidth >= 1118) { // For desktop
+                item.querySelector('.dropdown__menu').classList.remove('show-menu');
+            }
+        });
+    });
+};
+
+handleDropdownToggle();
+
+
+
+
+
+
+
+        var swiper = new Swiper(".mySwiper", {
+            spaceBetween: 30,
+            effect: "fade",
+
+            autoplay: {
+                delay: 7000, // Adjust the delay in milliseconds between slides
+                disableOnInteraction: false, // Continue autoplay even when the user interacts with the slider
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+        });
+
+
+        const sr = ScrollReveal({
+            distance: '70px',
+            duration: 700,
+            reset: true
+        });
+        sr.reveal('.list-item', { delay: 200, orgin: 'bottom' });
+        sr.reveal('.img-section', { delay: 350, orgin: 'top' });
+        sr.reveal('.img-sections', { delay: 350, orgin: 'top' });
+        sr.reveal('.card', { delay: 450, orgin: 'top' });
+        sr.reveal('.content-section', { delay: 350, orgin: 'top' });
+        //  sr.reveal('.about-us', { delay: 350, orgin: 'top' });
+
+        $(document).ready(function () {
+            $('.customer-logos').slick({
+                slidesToShow: 3,
+                slidesToScroll: 1,
+                autoplay: true,
+                autoplaySpeed: 1500,
+                arrows: false,
+                dots: false,
+                pauseOnHover: false,
+                responsive: [{
+                    breakpoint: 768,
+                    settings: {
+                        slidesToShow: 6
+                    }
+                }, {
+                    breakpoint: 520,
+                    settings: {
+                        slidesToShow: 3
+                    }
+                }]
+            });
+        });
+
+
+
+        var testimonialSwiper = new Swiper(".testimonial-swiper", {
+            slidesPerView: 1,
+            spaceBetween: 30,
+            loop: true,
+            autoplay: {
+                delay: 7000,
+                disableOnInteraction: false,
+            },
+            speed: 2000, // Set the speed to 1000 milliseconds (1 second)
+            // pagination: {
+            //     el: ".testimonial-pagination", // Use the specific class for pagination
+            //     clickable: true,
+            // },
+
+        });
+
+        // Update pagination buttons when swiper is initialized or when slides change
+        testimonialSwiper.on('init slideChange', function () {
+            updatePaginationButtons(testimonialSwiper);
+        });
+        // Custom pagination functionality
+        var paginationButtons = document.querySelectorAll('.pagination-button');
+
+        paginationButtons.forEach(function (button, index) {
+            button.addEventListener('click', function () {
+                // Slide to corresponding slide when pagination button is clicked
+                testimonialSwiper.slideTo(index);
+                // Update active state of pagination buttons
+                paginationButtons.forEach(function (btn) {
+                    btn.classList.remove('active');
+                });
+                button.classList.add('active');
+            });
+        });
+
+        // Update active state of pagination buttons when swiper slides change
+        testimonialSwiper.on('slideChange', function () {
+    paginationButtons.forEach(function (button, index) {
+        if (index === testimonialSwiper.realIndex) { // Use realIndex instead of activeIndex
+            button.classList.add('active');
+        } else {
+            button.classList.remove('active');
+        }
+    });
+});
+
+// Function to update pagination buttons
+function updatePaginationButtons(swiper) {
+    var paginationContainer = document.querySelector('.custom-pagination');
+    paginationContainer.innerHTML = ''; // Clear existing buttons
+
+    for (var i = 0; i < swiper.slides.length; i++) {
+        var button = document.createElement('button');
+        button.classList.add('pagination-button');
+        if (i === swiper.realIndex) { // Use realIndex instead of activeIndex
+            button.classList.add('active');
+        }
+        button.addEventListener('click', function () {
+            var index = Array.from(this.parentElement.children).indexOf(this);
+            swiper.slideTo(index);
+        });
+        paginationContainer.appendChild(button);
+    }
+}
+
+
+ 
+
+$('.counter-count').each(function () {
+    var count = parseInt($(this).text()); // Parse the text content to an integer
+    $(this).prop('Counter', 0).animate({
+        Counter: count // Use the parsed integer value
+    }, {
+        // Change count up speed here
+        duration: 4000,
+        easing: 'swing',
+        step: function (now) {
+            $(this).text(Math.ceil(now) + "+"); // Add the + sign after the number during animation
+        },
+        complete: function() {
+            $(this).text(count + "+"); // Ensure the + sign remains after the animation completes
+        }
+    });
+});
+
+
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    {% load static %}
+
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="{% static 'images/log_final.png' %}" type="image/x-icon">
+
+    <title>Sperm Donor Program</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css">
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+        integrity="sha512-nRRvYQUKo6eZuNDJ6ACzhV4fMcRX49zNndVNmNx8lFXh/foUsZP9zzpXqiw6IzqRMPNsqkIEOevD7OdtJ0Gg9g=="
+        crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<style>
+    body {
+        line-height: 1.6;
+    }
+
+    .nav__link {
+        position: relative;
+        /* Ensure the relative positioning for the ::after pseudo-element */
+    }
+
+    .nav__link::after {
+        content: '';
+        position: absolute;
+        bottom: 30px;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        /* Adjust the height of the underline as needed */
+        background-color: transparent;
+        /* Initial color of the underline */
+        transition: background-color 0.3s ease;
+        /* Add a smooth transition effect for the color change */
+    }
+
+    .nav__link:hover::after {
+        background-color: #ca8961;
+        /* Change the background color of the underline on hover */
+    }
+
+    @media screen and (max-width: 768px) {
+        .nav__link::after {
+            width: 50%;
+            /* Reduce the width of the underline for screens smaller than 768px */
+            bottom: -2px;
+            /* Adjust the position for responsiveness */
+        }
+    }
+
+    @media screen and (max-width: 999px) {
+        .nav__link::after {
+            width: 50%;
+            /* Reduce the width of the underline for screens smaller than 768px */
+            bottom: -2px;
+            /* Adjust the position for responsiveness */
+        }
+    }
+
+    .page-header {
+        position: relative;
+        padding: 0;
+        border: none;
+        margin: 0;
+        background-color: #03132b;
+    }
+
+    .page-header-default .overlay {
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+    .breadc-box .row {
+        display: -webkit-box !important;
+        display: -ms-flexbox !important;
+        display: flex !important;
+        -webkit-box-align: center !important;
+        -ms-flex-align: center !important;
+        align-items: center !important;
+        min-height: 450px;
+    }
+
+    .page-title {
+        color: #fff;
+        line-height: 1;
+    }
+
+    .breadcrumbs {
+        margin: 0;
+    }
+
+    .breadcrumbs li {
+        display: inline-block;
+        font-size: 16px;
+        color: #ffd100;
+    }
+
+    .breadc-box li:before {
+        content: "/";
+        font-family: FontAwesome;
+        color: #fff;
+        margin: 0 8px;
+    }
+
+    .breadc-box li:first-child:before {
+        display: none;
+    }
+
+    .breadcrumbs li a {
+        font-size: 16px;
+        color: #b7b7b7;
+    }
+
+    .breadcrumbs li a:hover {
+        color: #ffd100;
+        text-decoration: none;
+    }
+
+    .container {
+        /* max-width: 800px; */
+        margin: auto;
+        padding: 0 20px;
+    }
+
+    .ser {
+        padding: 40px 0;
+    }
+
+    h2 {
+        color: #bd4419;
+    }
+
+    #counting {
+        font-size: 48px;
+        /* text-align: center; */
+    }
+
+    #process ol {
+        list-style-type: none;
+    }
+
+    #process li {
+        position: relative;
+        padding-left: 1.5em;
+    }
+
+    #process li:before {
+        content: "\25c6";
+        /* Unicode character for a diamond */
+        color: #bd4419;
+        /* Change color as needed */
+        font-size: 1.2em;
+        position: absolute;
+        left: 0;
+    }
+
+    .accordion {
+        --bs-accordion-btn-bg: #fff;
+        --bs-accordion-active-bg: #fff;
+        --bs-accordion-btn-focus-box-shadow: none;
+        --bs-accordion-border-color: #111;
+        --bs-accordion-border-radius: none;
+        --bs-accordion-btn-focus-box-shadow: #fff;
+    }
+    .centered-text-section {
+            background-color: #bd4419; /* Set your desired background color */
+            color: #ffffff; /* Set your desired text color */
+            text-align: center;
+            padding: 80px 0; /* Adjust the padding as needed */
+        }
+        @media screen and (max-width: 768px) { /* Adjust the max-width to target tablet and mobile screens */
+    #top-section {
+        display: none;
+    }
+}
+@media screen and (max-width: 900px) { /* Adjust the max-width to target tablet and mobile screens */
+    #top-section {
+        display: none;
+    }
+}
+</style>
+
+<body>
+  <!--=============== HEADER ===============-->
+  <header class="header" >
+    <div class="header__top" id="top-section">
+        <div class="address">Edappally - Pukkattupady Rd, Toll Junction, Edappally, Ernakulam, Kerala 682024</div>
+        <div class="social-media">
+            <a href="#" class="social-media__link"><i class="ri-facebook-fill"></i></a>
+            <a href="#" class="social-media__link"><i class="ri-whatsapp-fill"></i></a>
+            <a href="#" class="social-media__link"><i class="ri-instagram-fill"></i></a>
+        </div>
+    </div>
+    <nav class="nav  sav datsection " id="nav-bar">
+        <div class="nav__data">
+            <a href="#" class="nav__logo">
+                <img src="{% static 'images/logo.png' %}" alt="" class="img-fluid" style="width: 150px;">
+            </a>
+
+            <div class="sav__toggle" id="nav-toggle">
+                <i class="ri-menu-line nav__burger"></i>
+                <i class="ri-close-line nav__close"></i>
+            </div>
+        </div>
+
+        <!--=============== NAV MENU ===============-->
+        <div class="nav__menu" id="nav-menu">
+            <ul class="nav__list">
+                <li><a href="/" class="nav__link">Home</a></li>
+
+                <li class="dropdown__item">
+
+                    <div class="nav__link">
+                       <a class="text-white" href="{% url 'about_us' %}">About Us</a>  <i class="ri-arrow-down-s-line dropdown__arrow"></i>
+                    </div>
+
+
+                    <ul class="dropdown__menu">
+                        
+                        <li>
+                            <a href="{% url 'why_mamamia' %}" class="dropdown__link">
+                                <i class="ri-question-answer-fill"></i> Why Mamamia
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="{% url 'our_team' %}" class="dropdown__link">
+                                <i class="ri-team-line"></i> Our Team
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'our_associates' %}" class="dropdown__link">
+
+                                <i class="ri-shake-hands-line"></i> Our Associates
+
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+                <!--=============== DROPDOWN 2 ===============-->
+                <li class="dropdown__item">
+                    <div class="nav__link">
+                        <a class="text-white" href="{% url 'services' %}">Services</a> <i class="ri-arrow-down-s-line dropdown__arrow"></i>
+                    </div>
+
+                    <ul class="dropdown__menu">
+                        <li>
+                            <!-- <a href="{% url 'services' %}" class="dropdown__link">
+                                <i class="ri-service-line"></i> Services
+                            </a> -->
+                            <a href="{% url 'egg_donor' %}" class="dropdown__link">
+                                <i class="ri-service-line"></i> Egg Donor Program
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="{% url 'sperm_donor' %}" class="dropdown__link">
+                                <i class="ri-service-line"></i> Sperm Donor Program
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="{% url 'surrogacy_program' %}" class="dropdown__link">
+                                <i class="ri-service-line"></i>Surrogacy Program
+                            </a>
+                        </li>
+                        <!-- <li>
+                            <a href="#" class="dropdown__link">
+                                <i class="ri-service-line"></i>Premium Delivery Care
+                            </a>
+                        </li> -->
+                    </ul>
+                </li>
+
+                <li><a href="{% url 'blog' %}" class="nav__link">Blog</a></li>
+
+                <!--=============== DROPDOWN 1 ===============-->
+
+
+                <li><a href="{% url 'gallery' %}" class="nav__link">Gallery</a></li>
+
+
+
+                <li><a href="{% url 'contact_us' %}" class="nav__link">Contact Us</a></li>
+            </ul>
+        </div>
+    </nav>
+</header>
+<div class="swiper-container" id="swiper1" style="margin-top: 85px;">
+    <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+            
+            <div class="swiper-slide slide-section">
+                <div class="slide-content">
+                    
+                        <img src="{% static 'images/Semen_Donors_Cover.png' %}" alt="this is banner image" />
+                    
+                    <div class="slide-text">
+                        <!-- <h1>{{ content.heading }}</h1>
+                        <p>{{ content.paragraph }}</p> -->
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        <div class="swiper-pagination"></div>
+    </div>
+</div>
+
+
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <section id="overview" class="ser">
+
+                    <div class="container">
+
+                        <h2>{{ sperm.heading }}</h2>
+                        <p class="fz-22 fw3 mb-xl-5 " style="text-align: justify;">{{ sperm.paragraph }}</p>
+                    </div>
+                </section>
+
+
+
+                <!-- <section id="process">
+                    <div class="container">
+                        <h2>Can I be a sperm donor?</h2>
+                        <p>The Sperm donation process involves several steps:</p>
+                        <ol>
+                            <li>The person donating sperm must be an Indian Resident</li>
+                            <li>If you are a healthy man between 23 and 45 years of age, you may be suitable to be a
+                                sperm donor</li>
+                            <li>If the person donating sperm has a partner,
+                                they are also required to attend counselling sessions along with the potential donor.
+                            </li>
+
+                        </ol>
+                        <p class="fz-22 fw3 mb-xl-5 " style="text-align: justify;">You may already have children of your
+                            own and want to help others experience parenthood. Or you may not be ready to have a family
+                            of your own but want to make someone else’s dreams come true. You can also donate sperm to a
+                            relative or friend who is trying to conceive. In this situation, we may consider donors over
+                            45 years of age.</p>
+                    </div>
+                </section> -->
+
+
+
+                <!-- <section id="contact" class="ser">
+                      <div class="container">
+                        <h2>Contact Us</h2>
+                        <p>For more information or to apply to become an egg donor, please contact us:</p>
+                        <p>Email: info@artbank.com</p>
+                        <p>Phone: 123-456-7890</p>
+                      </div>
+                    </section> -->
+            </div>
+            <div class="col-lg-6">
+                <section id="donors-info" >
+                    <div class="container">
+                        <div class="row">
+
+
+                            <div class="container mt-5">
+                                {% if sperm.image %}
+                                    <img src="{{ sperm.image.url }}" alt="images" class="img-fluid" style="border-radius: 20px;">
+                                {% else %}
+                                    <p>No image available</p>
+                                {% endif %}
+                            </div>
+                            <!-- <section id="faqs" class="ser">
+                                <div class="container">
+                                    <h2>FAQs</h2>
+                                    <div class="accordion accordion-flush" id="accordionFlushExample">
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header">
+                                                <button class="accordion-button collapsed" type="button"
+                                                    data-bs-toggle="collapse" data-bs-target="#flush-collapseOne"
+                                                    aria-expanded="false" aria-controls="flush-collapseOne">
+                                                    Why do we need more sperm donors?
+                                                </button>
+                                            </h2>
+                                            <div id="flush-collapseOne" class="accordion-collapse collapse"
+                                                data-bs-parent="#accordionFlushExample">
+                                                <div class="accordion-body">Infertility affects an estimated one in six
+                                                    couples. Many couples can be treated using conventional in vitro
+                                                    fertilization (IVF), but donor sperm may be required in some cases
+                                                    of severe male infertility where there is a failure of sperm
+                                                    production or where there is a serious medical or genetic condition.
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header">
+                                                <button class="accordion-button collapsed" type="button"
+                                                    data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo"
+                                                    aria-expanded="false" aria-controls="flush-collapseTwo">
+                                                    Why I became a sperm donor?
+                                                </button>
+                                            </h2>
+                                            <div id="flush-collapseTwo" class="accordion-collapse collapse"
+                                                data-bs-parent="#accordionFlushExample">
+                                                <div class="accordion-body">Mamamia ART Bank are proud for the generous
+                                                    gift that many men have made which has enabled others to fulfill
+                                                    their dream of having a family.</div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </section>
+                            <div class="container mt-5">
+                                <img src="{% static 'images/mm-30.jpg' %}" alt="images" class="img-fluid">
+                            </div> -->
+                        </div>
+                    </div>
+                </section>
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="centered-text-section" style="margin-top: 40px;">
+        <div class="container-fluid">
+            <h1 id="counting" style="color: #fff;">0 </h1>
+            <h2 class="mt-4" style="line-height: 1.5;  font-weight: 300 !important;font-size: 2.1111111111rem; color: #fff;"> Sperm Donors</h2>
+            
+        </div>
+    </div>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-lg-6">
+                <section id="process">
+                    <div class="container">
+                        <h2>{{ sperm_contents.heading }}</h2>
+                        <p>{{ sperm_contents.paragraph }}</p>
+                        <ol>
+                            {% for c in sperm_eligible %}
+                           <li>{{ c.description }}</li>
+
+                           {% endfor %}
+
+                        </ol>
+                        <p class="fz-22 fw3 mb-xl-5 " style="text-align: justify;">{{ sperm_contents.other_content }}</p>
+                    </div>
+                </section>
+            </div>
+            <div class="col-lg-6">
+<div class="container">
+    {% if faqs.image %}
+    <img src="{{ faqs.image.url }}" alt="images" class="img-fluid" style="border-radius: 20px;">
+{% else %}
+    <p>No image available</p>
+{% endif %}
+</div>
+
+            </div>
+        </div>
+    </div>
+    <div class="container" style="margin-top: 60px;">
+        <div class="heading">
+            <h1 class="text-center">Need a <span style="color: #bd4419;">Sperm Donor?</span></h1>
+        </div>
+        <div class=" mt-4">
+            <p class="fz-22 fw3 mb-xl-5 " style="text-align: justify;">For some individuals, the utilization of donor sperm serves as their only option for creating a family. As the pioneering and longest-standing donor bank in India, Mamamia ART Bank is committed to assisting you every step of the way during your donor journey.
+                There are two options: Bank-recruited donor sperm, where Mamamia ART Bank selects the donor, and recipient-recruited donor sperm, where the recipient couple or woman finds their own donor.</p>
+        </div>
+    </div>
+    <div class="container" style="margin-top: 60px;">
+    <div class="row">
+        <div class="col-lg-6 pt-5">
+            <section id="process">
+                <div class="container">
+                    <h2>{{ sperm_section.heading }}</h2>
+                    <p>{{ sperm_section.paragraph }}</p>
+                    <ol class="container">
+                        {% for c in sperm_guide %}
+                       <li>{{ c.description }} </li>
+                       {% endfor %}
+                    </ol>
+                    <div class="col-md-12 mt-4">
+                        {% if sperm_section.image %}
+                            <img src="{{ sperm_section.image.url }}" alt="Egg Donors" class="img-fluid" style="border-radius: 20px;">
+                        {% else %}
+                            <p>No image available</p>
+                        {% endif %}
+                    </div>
+            </section> 
+        </div>
+        <div class="col-lg-6 pt-5">
+            <div class="container">
+                <h2>{{ sperm_finals.heading }}</h2>
+                <p class="fz-22 fw3 mb-xl-5 " style="text-align: justify; white-space: pre-line;">{{ sperm_finals.paragraph }}</p>
+            </div>
+        </div>
+    </div>
+    </div>
+    <footer class="section bg-footer" style="margin-top: 60px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="">
+                        <h6 class="footer-heading text-uppercase text-white">Information</h6>
+                        <ul class="list-unstyled footer-link mt-4">
+                            <li><a href="/">Home</a></li>
+                            <li><a href="{% url 'about_us' %}">About Us</a></li>
+                            <li><a href="{% url 'services' %}">Services</a></li>
+                            <li><a href="{% url 'blog' %}">Blog</a></li>
+                            <li><a href="{% url 'gallery' %}">Gallery</a></li>
+                            <li><a href="{% url 'contact_us' %}">Contact Us</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-lg-3">
+                    <div class="">
+                        <h6 class="footer-heading text-uppercase text-white">About Us</h6>
+                        <ul class="list-unstyled footer-link mt-4">
+                            <li><a href="{% url 'why_mamamia' %}">Why Mamamia</a></li>
+                            <li><a href="{% url 'our_team' %}">Our Team</a></li>
+                           
+                            <li><a href="{% url 'our_associates' %}">Our Associate</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-lg-2">
+                    <div class="">
+                        <h6 class="footer-heading text-uppercase text-white">Services</h6>
+                        <ul class="list-unstyled footer-link mt-4">
+                            <li><a href="{% url 'egg_donor' %}">Egg Donor Program</a></li>
+                            <li><a href="{% url 'sperm_donor' %}">Sperm Donor Program</a></li>
+                            <li><a href="{% url 'surrogacy_program' %}">Surrogacy Program</a></li>
+                           
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="">
+                        <h6 class="footer-heading text-uppercase text-white">Contact Us</h6>
+                        <p class="contact-info mt-4">Contact us if need help withanything</p>
+                        <p class="contact-info">+01 123-456-7890</p>
+                        <div class="mt-5">
+                            <div class="footer-social">
+                                <h6 class="footer-heading text-uppercase text-white">Follow Us</h6>
+                                <a href="" class="mt-3" target="_blank"><i class="fab fa-facebook"></i></a>
+                                <a href="" class="mt-3" target="_blank"><i class="fab fa-instagram"></i></a>
+                                <a href="" class="mt-3" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                                <a href="" class="mt-3" target="_blank"><i class="fab fa-youtube"></i></a>
+                                <a href="" class="mt-3" target="_blank"><i class="fab fa-telegram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="text-center mt-5 text-white">
+            &copy; mamamialife.com All Rights Reserved | Designed and Developed by <a href="https://softverses.com/"
+                class="text-white" target="_blank">Softverses</a>
+        </div>
+    </footer>
+
+
+
+
+
+
+
+
+
+    <script src="{% static 'js/bootstrap.bundle.js' %}"></script>
+    <script src="{% static 'js/bootstrap.js' %}"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+    <script>
+               const showMenu = (toggleId, navId) => {
+    const toggle = document.getElementById(toggleId),
+        nav = document.getElementById(navId)
+
+    toggle.addEventListener('click', () => {
+        // Add show-menu class to nav menu
+        nav.classList.toggle('show-menu')
+
+        // Add show-icon to show and hide the menu icon
+        toggle.classList.toggle('show-icon')
+    })
+}
+showMenu('nav-toggle', 'nav-menu')
+
+const handleDropdownToggle = () => {
+    const dropdownItems = document.querySelectorAll('.dropdown__item');
+
+    dropdownItems.forEach(item => {
+        // Add event listener for both hover and click
+        item.addEventListener('mouseover', () => {
+            if (window.innerWidth >= 1118) { // For desktop
+                item.querySelector('.dropdown__menu').classList.add('show-menu');
+            }
+        });
+
+        item.addEventListener('click', () => {
+            if (window.innerWidth < 1118) { // For mobile and tablet
+                item.querySelector('.dropdown__menu').classList.toggle('show-menu');
+            }
+        });
+
+        // For mobile and tablet, prevent redirection when clicking the dropdown title
+        if (window.innerWidth < 1118) {
+            const dropdownTitle = item.querySelector('.nav__link');
+            dropdownTitle.addEventListener('click', (e) => {
+                e.preventDefault();
+                item.querySelector('.dropdown__menu').classList.toggle('show-menu');
+            });
+        }
+
+        // Close dropdown on mouse leave for desktop
+        item.addEventListener('mouseleave', () => {
+            if (window.innerWidth >= 1118) { // For desktop
+                item.querySelector('.dropdown__menu').classList.remove('show-menu');
+            }
+        });
+    });
+};
+
+handleDropdownToggle();
+
+
+
+        const countingElement = document.getElementById('counting');
+        const targetCount = 4000;
+        let currentCount = 0;
+
+        function countAnimation() {
+            if (currentCount <= targetCount) {
+                countingElement.textContent = currentCount + "+";
+                currentCount++;
+                setTimeout(countAnimation, 100); // Adjust the duration of each count
+            }
+        }
+
+        countAnimation();
+    </script>
+</body>
+
+</html>
